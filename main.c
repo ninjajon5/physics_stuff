@@ -31,7 +31,9 @@ int main( void ) {
     while( running ) {
         long long frame_start_time = get_current_time_nanoseconds() ;
 
-        
+        struct rectangle rectangle = { .y = 0.0 } ;
+        rectangle_apply_gravity( rectangle, 1.0 ) ;
+        printf( "%f\n", rectangle.y ) ;
 
         long long frame_elapsed_time = get_current_time_nanoseconds() - frame_start_time ;
         sleep_for_nanoseconds( FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;
