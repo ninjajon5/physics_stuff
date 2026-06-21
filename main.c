@@ -1,6 +1,6 @@
 #include <time.h>
 #include <stdio.h>
-#include "time.h"
+#include "event_loop_time.h"
 
 #define _POSIX_C_SOURCE 199309L // feature test macro to allow POSIX clock_gettime and CLOCK_MONOTONIC
 #define FPS 60
