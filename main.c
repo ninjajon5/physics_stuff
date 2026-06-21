@@ -1,8 +1,8 @@
-#define _POSIX_C_SOURCE 199309L // feature test macro to allow POSIX clock_gettime and CLOCK_MONOTONIC
 #include <time.h>
 #include <stdio.h>
 #include "time.h"
 
+#define _POSIX_C_SOURCE 199309L // feature test macro to allow POSIX clock_gettime and CLOCK_MONOTONIC
 #define FPS 60
 #define FRAME_TIME_NANOSECONDS ( 1000000000LL / FPS )
 // APIs expect nanoseconds, so this avoids conversion
