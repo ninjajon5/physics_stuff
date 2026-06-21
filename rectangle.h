@@ -12,6 +12,6 @@ struct rectangle {
     float height ;
 } ;
 
-void rectangle_apply_gravity( struct rectangle ) ;
+void rectangle_apply_gravity( struct rectangle *rectangle, float gravity ) ;
 
 #endif
