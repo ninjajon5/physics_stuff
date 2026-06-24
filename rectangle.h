@@ -1,10 +1,6 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-/*
-rectangle struct, with dimensions and position
-*/
-
 struct rectangle {
     float x ;
     float y ;
