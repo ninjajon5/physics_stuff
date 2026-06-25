@@ -39,7 +39,11 @@ int main( void ) {
 
         rectangle_apply_gravity( &rectangles[0], 1.0 ) ;
         rectangle_apply_velocity( &rectangles[0] ) ;
-        printf( "%f\n", rectangles[0].y ) ;
+        if( VISUALISE ) {
+            SDL_Log( "%f\n", rectangles[0].y ) ;
+        } else { 
+            printf( "%f\n", rectangles[0].y ) ; 
+        }
 
         if( VISUALISE ) { renderer_draw_rectangle( &rectangles[0] ) ; }
 
