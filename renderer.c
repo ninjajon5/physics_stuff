@@ -2,7 +2,7 @@
 #include "renderer.h"
 
 static SDL_Window *window = NULL ;
-static SDL_renderer * renderer = NULL ;
+static SDL_Renderer * renderer = NULL ;
 
 int renderer_init( int window_width, int window_height ) {
     if( !SDL_Init( SDL_INIT_VIDEO ) ) return 0 ;
