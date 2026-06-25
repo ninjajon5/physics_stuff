@@ -4,8 +4,9 @@
 #include "rectangle.h"
 
 #define _POSIX_C_SOURCE 199309L // feature test macro to allow POSIX clock_gettime and CLOCK_MONOTONIC
-#define FPS 60
-#define FRAME_TIME_NANOSECONDS ( 1000000000LL / FPS )
+
+static const int FPS = 60 ;
+static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 // APIs expect nanoseconds, so this avoids conversion
 // long long to handle the large counts from using nanoseconds
 
