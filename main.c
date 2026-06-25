@@ -12,7 +12,9 @@ static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 // long long to handle the large counts from using nanoseconds
 
 
-int main( void ) {    
+int main( void ) {
+    if( VISUALISE && !renderer_init( 800, 600 ) ) return 1 ;
+    
     struct rectangle rectangles[ 1024 ] ;
     rectangles[0] = (struct rectangle){ .y = 0.0, .y_velocity = 0.0 } ;
     
@@ -20,13 +22,24 @@ int main( void ) {
     while( running ) {
         long long frame_start_time = get_current_time_nanoseconds() ;
 
+        SDL_Event event ;
+        if( VISUALISE ) {
+            while( SDL_PollEvent( &event ) ) {
+                if( event.type == SDL_EVENT_QUIT ) running = 0 ;
+            }
+        }
+
         rectangle_apply_gravity( &rectangles[0], 2.0 ) ;
         rectangle_apply_velocity( &rectangles[0] ) ;
         printf( "%f\n", rectangles[0].y ) ;
 
+        if( VISUALISE ) { renderer_draw( &rectangles[0] ) ; }
+
         long long frame_elapsed_time = get_current_time_nanoseconds() - frame_start_time ;
         sleep_for_nanoseconds( FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;
     }
+
+    if( VISUALISE ) { renderer_shutdown() ; }
 
     return 0 ;
 }
