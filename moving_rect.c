@@ -63,3 +63,9 @@ void SDL_AppQuit(void *appstate, SDL_AppResult result)
     /* SDL will clean up the window/renderer for us. */
 }
 
+void renderer_shutdown( void ) {
+    SDL_DestroyRenderer( renderer ) ;
+    SDL_DestroyWindow( window ) ;
+    SDL_Quit() ;
+}
+

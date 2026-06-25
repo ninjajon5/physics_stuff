@@ -1,0 +1,28 @@
+#include <SDL3/SDL.h>
+#include "renderer.h"
+
+static SDL_Window *window = NULL ;
+static SDL_renderer * renderer = NULL ;
+
+int renderer_init( int window_width, int window_height ) {
+    if( !SDL_Init( SDL_INIT_VIDEO ) ) return 0 ;
+    if( !SDL_CreateWindowAndRenderer( "physics stuff", 640, 480, SDL_WINDOW_RESIZABLE, &window, &renderer ) ) return 0 ;
+    SDL_SetRenderLogicalPresentation( renderer, 640, 480, SDL_LOGICAL_PRESENTATION_LETTERBOX ) ;
+    
+    return 1 ;
+}
+
+void renderer_draw_rectangles( struct rectangle *rectangle ) {
+    SDL_SetRenderDrawColor( renderer, 0, 0, 0, SDL_ALPHA_OPAQUE ) ;
+    SDL_RenderClear( renderer ) ;
+
+    SDL_SetRenderDrawColor( renderer, 0, 0, 255, SDL_ALPHA_OPAQUE ) ;
+    SDL_FRect sdl_rectangle = {
+        .x = rectangle->x,
+        .y = rectangle->y,
+        .w = rectangle->width,
+        .h = rectangle->height
+    } ;
+    SDL_RenderFillRect( renderer, &sdl_rectangle ) ;
+    SDL_RenderPresent( renderer ) ;
+}

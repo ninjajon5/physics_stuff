@@ -5,13 +5,14 @@
 
 #define _POSIX_C_SOURCE 199309L // feature test macro to allow POSIX clock_gettime and CLOCK_MONOTONIC
 
+static const int VISUALISE = 1 ;
 static const int FPS = 60 ;
 static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 // APIs expect nanoseconds, so this avoids conversion
 // long long to handle the large counts from using nanoseconds
 
 
-int main( void ) {
+int main( void ) {    
     struct rectangle rectangles[ 1024 ] ;
     rectangles[0] = (struct rectangle){ .y = 0.0, .y_velocity = 0.0 } ;
     
