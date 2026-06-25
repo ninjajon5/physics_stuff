@@ -1,5 +1,6 @@
 #include <time.h>
 #include <stdio.h>
+#include <SDL3/SDL.h>
 #include "event_loop_time.h"
 #include "rectangle.h"
 #include "renderer.h"
