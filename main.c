@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "event_loop_time.h"
 #include "rectangle.h"
+#include "renderer.h"
 
 #define _POSIX_C_SOURCE 199309L // feature test macro to allow POSIX clock_gettime and CLOCK_MONOTONIC
 
