@@ -35,7 +35,7 @@ int main( void ) {
         rectangle_apply_velocity( &rectangles[0] ) ;
         printf( "%f\n", rectangles[0].y ) ;
 
-        if( VISUALISE ) { renderer_draw( &rectangles[0] ) ; }
+        if( VISUALISE ) { renderer_draw_rectangle( &rectangles[0] ) ; }
 
         long long frame_elapsed_time = get_current_time_nanoseconds() - frame_start_time ;
         sleep_for_nanoseconds( FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;

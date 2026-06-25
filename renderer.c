@@ -12,7 +12,7 @@ int renderer_init( int window_width, int window_height ) {
     return 1 ;
 }
 
-void renderer_draw_rectangles( struct rectangle *rectangle ) {
+void renderer_draw_rectangle( struct rectangle *rectangle ) {
     SDL_SetRenderDrawColor( renderer, 0, 0, 0, SDL_ALPHA_OPAQUE ) ;
     SDL_RenderClear( renderer ) ;
 
