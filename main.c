@@ -11,11 +11,10 @@
 
 
 int main( void ) {
-    int running = 1 ;
-
     struct rectangle rectangles[ 1024 ] ;
     rectangles[0] = (struct rectangle){ .y = 0.0, .y_velocity = 0.0 } ;
     
+    int running = 1 ;
     while( running ) {
         long long frame_start_time = get_current_time_nanoseconds() ;
 
