@@ -18,7 +18,13 @@ int main( void ) {
     if( VISUALISE && !renderer_init( 800, 600 ) ) return 1 ;
     
     struct rectangle rectangles[ 1024 ] ;
-    rectangles[0] = (struct rectangle){ .y = 0.0, .y_velocity = 0.0 } ;
+    rectangles[0] = (struct rectangle){ 
+        .x = 0.0,
+        .y = 0.0,
+        .width = 5.0,
+        .height = 5.0,
+        .y_velocity = 0.0 
+    } ;
     
     int running = 1 ;
     while( running ) {
@@ -31,7 +37,7 @@ int main( void ) {
             }
         }
 
-        rectangle_apply_gravity( &rectangles[0], 2.0 ) ;
+        rectangle_apply_gravity( &rectangles[0], 0.5 ) ;
         rectangle_apply_velocity( &rectangles[0] ) ;
         printf( "%f\n", rectangles[0].y ) ;
 
