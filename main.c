@@ -7,6 +7,11 @@
 
 #define _POSIX_C_SOURCE 199309L // feature test macro to allow POSIX clock_gettime and CLOCK_MONOTONIC
 
+enum Renderer {
+    TEXT,
+    SDL3
+}
+static const enum Renderer renderer = SDL3 ;
 static const int VISUALISE = 1 ;
 static const int FPS = 60 ;
 static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
