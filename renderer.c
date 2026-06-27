@@ -1,14 +1,14 @@
 #include "renderer.h"
+#include "text_renderer.h"
 #include "sdl3_renderer.h"
 #include "rectangle.h"
 
 int renderer_init( enum Renderer renderer, int window_width, int window_height ) {
     switch( renderer ) {
         case TEXT:
-            return 1 ;
+            return text_renderer_init() ;
         case SDL3:
-            sdl3_renderer_init( window_width, window_height ) ;
-            return 1 ;
+            return sdl3_renderer_init( window_width, window_height ) ;
         default:
             return 0 ;
     }
@@ -18,7 +18,7 @@ int renderer_init( enum Renderer renderer, int window_width, int window_height )
 void renderer_draw_rectangle( enum Renderer renderer, struct rectangle *rectangle ) {
     switch( renderer ) {
         case TEXT:
-            break ;
+            text_renderer_draw_rectangle( rectangle ) ;
         case SDL3:
             sdl3_renderer_draw_rectangle( rectangle ) ;
         default:
@@ -29,18 +29,18 @@ void renderer_draw_rectangle( enum Renderer renderer, struct rectangle *rectangl
 int renderer_quit_requested( enum Renderer renderer ) {
     switch( renderer ) {
         case TEXT:
-            break ;
+            return text_renderer_quit_requested() ;
         case SDL3:
-            sdl3_quit_requested() ;
+            return sdl3_quit_requested() ;
         default:
-            break ;
+            return 0 ;
     }
 }
 
 void renderer_shutdown( enum Renderer renderer ) {
     switch( renderer ) {
         case TEXT:
-            break ;
+            text_renderer_shutdown() ;
         case SDL3:
             sdl3_renderer_shutdown() ;
         default:
