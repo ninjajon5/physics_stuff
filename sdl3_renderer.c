@@ -6,7 +6,7 @@ static SDL_Renderer * renderer = NULL ;
 
 int sdl3_renderer_init( int window_width, int window_height ) {
     if( !SDL_Init( SDL_INIT_VIDEO ) ) return 0 ;
-    if( !SDL_CreateWindowAndRenderer( "physics stuff", 640, 480, SDL_WINDOW_RESIZABLE, &window, &renderer ) ) return 0 ;
+    if( !SDL_CreateWindowAndRenderer( "physics stuff", window_width, window_height, SDL_WINDOW_RESIZABLE, &window, &renderer ) ) return 0 ;
     SDL_SetRenderLogicalPresentation( renderer, 640, 480, SDL_LOGICAL_PRESENTATION_LETTERBOX ) ;
     
     return 1 ;
