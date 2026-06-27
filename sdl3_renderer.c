@@ -6,7 +6,14 @@ static SDL_Renderer * renderer = NULL ;
 
 int sdl3_renderer_init( int window_width, int window_height ) {
     if( !SDL_Init( SDL_INIT_VIDEO ) ) return 0 ;
-    if( !SDL_CreateWindowAndRenderer( "physics stuff", window_width, window_height, SDL_WINDOW_RESIZABLE, &window, &renderer ) ) return 0 ;
+    if( !SDL_CreateWindowAndRenderer( 
+                "physics stuff", 
+                window_width, 
+                window_height, 
+                SDL_WINDOW_RESIZABLE, 
+                &window, 
+                &renderer 
+    ) ) return 0 ;
     SDL_SetRenderLogicalPresentation( renderer, 640, 480, SDL_LOGICAL_PRESENTATION_LETTERBOX ) ;
     
     return 1 ;
@@ -27,6 +34,14 @@ void sdl3_renderer_draw_rectangle( struct rectangle *rectangle ) {
     SDL_RenderPresent( renderer ) ;
 
     SDL_Log( "%f\n", rectangle->y ) ;
+}
+
+int sdl3_quit_requested() {
+    SDL_Event event ;
+    while( SDL_PollEvent( &event ) ) {
+        if( event.type == SDL_EVENT_QUIT ) return 1 ;
+    }
+    return 0 ;
 }
 
 void sdl3_renderer_shutdown( void ) {

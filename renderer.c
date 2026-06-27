@@ -26,6 +26,17 @@ void renderer_draw_rectangle( enum Renderer renderer, struct rectangle *rectangl
     }
 } 
 
+int renderer_quit_requested( enum Renderer renderer ) {
+    switch( renderer ) {
+        case TEXT:
+            break ;
+        case SDL3:
+            sdl3_quit_requested() ;
+        default:
+            break ;
+    }
+}
+
 void renderer_shutdown( enum Renderer renderer ) {
     switch( renderer ) {
         case TEXT:

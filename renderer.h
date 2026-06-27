@@ -10,6 +10,7 @@ enum Renderer {
 
 int renderer_init( enum Renderer renderer, int window_width, int window_height ) ;
 void renderer_draw_rectangle( enum Renderer renderer, struct rectangle *rectangle ) ; 
+int renderer_quit_requested( enum Renderer renderer ) ;
 void renderer_shutdown( enum Renderer renderer ) ;
 
 #endif
