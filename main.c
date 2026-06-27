@@ -8,8 +8,8 @@
 
 /*
 TODO
-- refactor to separate renderer
 - clean up folder structure
+- have a command line argument for renderer
 - add tests to rectangle
 - add collision
 - add bounce
