@@ -8,8 +8,10 @@
 
 /*
 TODO
+- get debug working on windows
 - clean up folder structure
 - have a command line argument for renderer
+- figure out why the speeds are different between renderers
 - add tests to rectangle
 - add collision
 - add bounce
