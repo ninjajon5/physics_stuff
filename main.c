@@ -10,6 +10,7 @@
 /*
 TODO
 - refactor to separate renderer
+- clean up folder structure
 - add tests to rectangle
 - add collision
 - add bounce
@@ -24,7 +25,7 @@ static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 
 
 int main( void ) {
-    if( !renderer_init( 800, 600 ) ) return 1 ;
+    if( !renderer_init( renderer, 800, 600 ) ) return 1 ;
     
     struct rectangle rectangles[ 1024 ] ;
     rectangles[0] = (struct rectangle){ 
@@ -54,13 +55,13 @@ int main( void ) {
             printf( "%f\n", rectangles[0].y ) ; 
         }
 
-        if( VISUALISE ) { renderer_draw_rectangle( &rectangles[0] ) ; }
+        renderer_draw_rectangle( &rectangles[0] ) ;
 
         long long frame_elapsed_time = get_current_time_nanoseconds() - frame_start_time ;
         sleep_for_nanoseconds( FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;
     }
 
-    if( VISUALISE ) { renderer_shutdown() ; }
+    renderer_shutdown() ;
 
     return 0 ;
 }
