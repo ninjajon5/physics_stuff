@@ -25,6 +25,8 @@ void sdl3_renderer_draw_rectangle( struct rectangle *rectangle ) {
     } ;
     SDL_RenderFillRect( renderer, &sdl_rectangle ) ;
     SDL_RenderPresent( renderer ) ;
+
+    SDL_Log( "%f\n", rectangle->y ) ;
 }
 
 void sdl3_renderer_shutdown( void ) {
