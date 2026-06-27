@@ -32,3 +32,4 @@ void renderer_shutdown( void ) {
     SDL_DestroyWindow( window ) ;
     SDL_Quit() ;
 }
+

@@ -7,12 +7,20 @@
 
 #define _POSIX_C_SOURCE 199309L // feature test macro to allow POSIX clock_gettime and CLOCK_MONOTONIC
 
+/*
+TODO
+- refactor to separate renderer
+- add tests to rectangle
+- add collision
+- add bounce
+- add directional launch
+*/
+
 enum Renderer {
     TEXT,
     SDL3
 }
 static const enum Renderer renderer = SDL3 ;
-static const int VISUALISE = 1 ;
 static const int FPS = 60 ;
 static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 // APIs expect nanoseconds, so this avoids conversion
@@ -20,7 +28,7 @@ static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 
 
 int main( void ) {
-    if( VISUALISE && !renderer_init( 800, 600 ) ) return 1 ;
+    if( !renderer_init( 800, 600 ) ) return 1 ;
     
     struct rectangle rectangles[ 1024 ] ;
     rectangles[0] = (struct rectangle){ 
