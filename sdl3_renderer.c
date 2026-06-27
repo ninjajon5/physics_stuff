@@ -4,7 +4,7 @@
 static SDL_Window *window = NULL ;
 static SDL_Renderer * renderer = NULL ;
 
-int renderer_init( int window_width, int window_height ) {
+int sdl3_renderer_init( int window_width, int window_height ) {
     if( !SDL_Init( SDL_INIT_VIDEO ) ) return 0 ;
     if( !SDL_CreateWindowAndRenderer( "physics stuff", 640, 480, SDL_WINDOW_RESIZABLE, &window, &renderer ) ) return 0 ;
     SDL_SetRenderLogicalPresentation( renderer, 640, 480, SDL_LOGICAL_PRESENTATION_LETTERBOX ) ;
@@ -12,7 +12,7 @@ int renderer_init( int window_width, int window_height ) {
     return 1 ;
 }
 
-void renderer_draw_rectangle( struct rectangle *rectangle ) {
+void sdl3_renderer_draw_rectangle( struct rectangle *rectangle ) {
     SDL_SetRenderDrawColor( renderer, 0, 0, 0, SDL_ALPHA_OPAQUE ) ;
     SDL_RenderClear( renderer ) ;
 
@@ -27,7 +27,7 @@ void renderer_draw_rectangle( struct rectangle *rectangle ) {
     SDL_RenderPresent( renderer ) ;
 }
 
-void renderer_shutdown( void ) {
+void sd3_renderer_shutdown( void ) {
     SDL_DestroyRenderer( renderer ) ;
     SDL_DestroyWindow( window ) ;
     SDL_Quit() ;

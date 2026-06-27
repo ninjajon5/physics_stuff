@@ -16,10 +16,6 @@ TODO
 - add directional launch
 */
 
-enum Renderer {
-    TEXT,
-    SDL3
-}
 static const enum Renderer renderer = SDL3 ;
 static const int FPS = 60 ;
 static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
