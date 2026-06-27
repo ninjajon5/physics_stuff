@@ -40,7 +40,7 @@ int main( void ) {
     while( running ) {
         long long frame_start_time = get_current_time_nanoseconds() ;
 
-        if( renderer_quit_requested() ) running = 0 ;
+        if( renderer_quit_requested( renderer ) ) running = 0 ;
 
         rectangle_apply_gravity( &rectangles[0], 1.0 ) ;
         rectangle_apply_velocity( &rectangles[0] ) ;
