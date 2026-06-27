@@ -41,27 +41,20 @@ int main( void ) {
         long long frame_start_time = get_current_time_nanoseconds() ;
 
         SDL_Event event ;
-        if( VISUALISE ) {
-            while( SDL_PollEvent( &event ) ) {
-                if( event.type == SDL_EVENT_QUIT ) running = 0 ;
-            }
+        while( SDL_PollEvent( &event ) ) {
+            if( event.type == SDL_EVENT_QUIT ) running = 0 ;
         }
 
         rectangle_apply_gravity( &rectangles[0], 1.0 ) ;
         rectangle_apply_velocity( &rectangles[0] ) ;
-        if( VISUALISE ) {
-            SDL_Log( "%f\n", rectangles[0].y ) ;
-        } else { 
-            printf( "%f\n", rectangles[0].y ) ; 
-        }
 
-        renderer_draw_rectangle( &rectangles[0] ) ;
+        renderer_draw_rectangle( renderer, &rectangles[0] ) ;
 
         long long frame_elapsed_time = get_current_time_nanoseconds() - frame_start_time ;
         sleep_for_nanoseconds( FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;
     }
 
-    renderer_shutdown() ;
+    renderer_shutdown( renderer ) ;
 
     return 0 ;
 }

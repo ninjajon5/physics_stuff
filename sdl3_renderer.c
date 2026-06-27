@@ -27,7 +27,7 @@ void sdl3_renderer_draw_rectangle( struct rectangle *rectangle ) {
     SDL_RenderPresent( renderer ) ;
 }
 
-void sd3_renderer_shutdown( void ) {
+void sdl3_renderer_shutdown( void ) {
     SDL_DestroyRenderer( renderer ) ;
     SDL_DestroyWindow( window ) ;
     SDL_Quit() ;

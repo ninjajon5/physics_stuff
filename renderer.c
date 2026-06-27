@@ -36,3 +36,4 @@ void renderer_shutdown( enum Renderer renderer ) {
             break ;
     }
 }
+

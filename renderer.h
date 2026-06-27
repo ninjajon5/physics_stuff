@@ -6,7 +6,7 @@
 enum Renderer {
     TEXT,
     SDL3
-}
+} ;
 
 int renderer_init( enum Renderer renderer, int window_width, int window_height ) ;
 void renderer_draw_rectangle( enum Renderer renderer, struct rectangle *rectangle ) ; 
