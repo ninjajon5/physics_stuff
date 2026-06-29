@@ -1,5 +1,3 @@
-#include <time.h>
-#include <stdio.h>
 #include "event_loop_time.h"
 #include "rectangle.h"
 #include "renderer.h"
