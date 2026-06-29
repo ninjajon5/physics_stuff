@@ -1,7 +1,7 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "rectangle.h"
+#include "../rectangles/rectangle.h"
 
 enum Renderer {
     TEXT,

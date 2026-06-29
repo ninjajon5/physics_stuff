@@ -1,12 +1,11 @@
-#include "event_loop_time.h"
-#include "rectangle.h"
-#include "renderer.h"
+#include "utils/event_loop_time.h"
+#include "rectangles/rectangle.h"
+#include "rendering/renderer.h"
 
 #define _POSIX_C_SOURCE 199309L // feature test macro to allow POSIX clock_gettime and CLOCK_MONOTONIC
 
 /*
 TODO
-- clean up folder structure
 - have a command line argument for renderer
 - figure out why the speeds are different between renderers
 - add tests to rectangle

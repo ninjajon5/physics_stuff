@@ -1,8 +1,7 @@
 #include "renderer.h"
 #include "text_renderer.h"
 #include "sdl3_renderer.h"
-#include "rectangle.h"
-#include <stdio.h>
+#include "../rectangles/rectangle.h"
 
 int renderer_init( enum Renderer renderer, int window_width, int window_height ) {
     switch( renderer ) {

@@ -1,6 +1,6 @@
 #ifndef TEXT_RENDERER_H
 #define TEXT_RENDERER_H
-#include "rectangle.h"
+#include "../rectangles/rectangle.h"
 
 int text_renderer_init() ;
 void text_renderer_draw_rectangle( struct rectangle *rectangle ) ; 
