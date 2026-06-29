@@ -6,8 +6,6 @@
 
 /*
 TODO
-- get debug working on windows
-- get warnings reading working
 - clean up folder structure
 - have a command line argument for renderer
 - figure out why the speeds are different between renderers
