@@ -1,6 +1,7 @@
 #include "utils/event_loop_time.h"
 #include "rectangles/rectangle.h"
 #include "rendering/renderer.h"
+#include <stdio.h>
 
 #define _POSIX_C_SOURCE 199309L // feature test macro to allow POSIX clock_gettime and CLOCK_MONOTONIC
 
@@ -14,18 +15,34 @@ TODO
 - add directional launch
 */
 
-static const enum Renderer renderer = SDL3 ;
+enum Renderer renderer = SDL3 ;
 static const int FPS = 60 ;
 static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 // APIs expect nanoseconds, so this avoids conversion
 // long long to handle the large counts from using nanoseconds
 
 
+int _handle_arguments( int argc, char* argv[], enum Renderer renderer ) {
+    if( argc > 2 ) {
+        printf( "only 1 argument is accepted" ) ;
+        return 0 ;
+    } else if( argc == 2 ) {
+        return !renderer_update( argv, &renderer ) ; 
+    } else if( argc == 1 ) {
+        return 1 ;
+    } else {
+        return 0 ;
+    }
+}
+
+
 int main( int argc, char* argv[] ) {
+    if( !_handle_arguments( argc, argv, renderer ) ) return 1 ;
+
     if( !renderer_init( renderer, 800, 600 ) ) return 1 ;
     
     struct rectangle rectangles[ 1024 ] ;
-    rectangles[0] = (struct rectangle){ 
+    rectangles[0] = (struct rectangle) { 
         .x = 300.0,
         .y = 0.0,
         .width = 15.0,
