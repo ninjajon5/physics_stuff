@@ -21,7 +21,7 @@ static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 // long long to handle the large counts from using nanoseconds
 
 
-int main( void ) {
+int main( int argc, char* argv[] ) {
     if( !renderer_init( renderer, 800, 600 ) ) return 1 ;
     
     struct rectangle rectangles[ 1024 ] ;
