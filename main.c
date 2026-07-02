@@ -22,12 +22,12 @@ static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 // long long to handle the large counts from using nanoseconds
 
 
-int _handle_arguments( int argc, char* argv[], enum Renderer renderer ) {
+int _handle_arguments( int argc, char* argv[], enum Renderer* renderer ) {
     if( argc > 2 ) {
         printf( "only 1 argument is accepted" ) ;
         return 0 ;
     } else if( argc == 2 ) {
-        return !renderer_update( argv, &renderer ) ; 
+        return renderer_update( argv, renderer ) ; 
     } else if( argc == 1 ) {
         return 1 ;
     } else {
@@ -37,7 +37,7 @@ int _handle_arguments( int argc, char* argv[], enum Renderer renderer ) {
 
 
 int main( int argc, char* argv[] ) {
-    if( !_handle_arguments( argc, argv, renderer ) ) return 1 ;
+    if( !_handle_arguments( argc, argv, &renderer ) ) return 1 ;
 
     if( !renderer_init( renderer, 800, 600 ) ) return 1 ;
     
