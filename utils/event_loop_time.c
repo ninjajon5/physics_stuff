@@ -33,17 +33,14 @@ struct tm get_current_calendar_time( void ) {
     return *localtime( &raw_time ) ;
 }
 
-void print_loop_info( void ) {
-    int frame_count = 1 ;
-    int second_count = 0 ;
-
-    if( frame_count == FPS ) {
-        frame_count = 1 ;
-        second_count++ ;
+void print_loop_info( int* frame_count, int* second_count ) {
+    if( *frame_count == FPS ) {
+        *frame_count = 0 ;
+        *second_count++ ;
     } else {
-        frame_count++ ;
+        *frame_count++ ;
     }
     
     struct tm current_calendar_time = get_current_calendar_time() ;
-    printf( "%d - %d - %d\n", frame_count, second_count, current_calendar_time.tm_sec ) ;
+    printf( "%d - %d - %d\n", *frame_count, *second_count, current_calendar_time.tm_sec ) ;
 }
