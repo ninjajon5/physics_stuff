@@ -38,7 +38,7 @@ int _handle_arguments( int argc, char* argv[], enum Renderer* renderer ) {
 
 void _debug( int FPS, long long frame_elapsed_time, int* frame_count, int* second_count ) {
     print_loop_info( FPS, frame_count, second_count ) ;
-    printf( "%lld\n", FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;
+    printf( "Spare time: %lld\n", FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;
 }
 
 
