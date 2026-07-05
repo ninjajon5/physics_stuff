@@ -36,6 +36,12 @@ int _handle_arguments( int argc, char* argv[], enum Renderer* renderer ) {
 }
 
 
+void _debug( int FPS, long long frame_elapsed_time, int* frame_count, int* second_count ) {
+    print_loop_info( FPS, frame_count, second_count ) ;
+    printf( "%lld\n", frame_elapsed_time ) ;
+}
+
+
 int main( int argc, char* argv[] ) {
     if( !_handle_arguments( argc, argv, &renderer ) ) return 1 ;
 
@@ -66,7 +72,7 @@ int main( int argc, char* argv[] ) {
         long long frame_elapsed_time = get_current_time_nanoseconds() - frame_start_time ;
         sleep_for_nanoseconds( FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;
         
-        if( DEBUG ) print_loop_info( FPS, &frame_count, &second_count ) ;
+        if( DEBUG ) _debug( FPS, frame_elapsed_time, &frame_count, &second_count ) ;
     }
 
     renderer_shutdown( renderer ) ;
