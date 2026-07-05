@@ -42,5 +42,11 @@ void print_loop_info( int* frame_count, int* second_count ) {
     }
     
     struct tm current_calendar_time = get_current_calendar_time() ;
-    printf( "%d - %d - %d\n", *frame_count, *second_count, current_calendar_time.tm_sec ) ;
+    int second_count_to_calendar_diff = *second_count - current_calendar_time.tm_sec ;
+    printf( "F%d - S%d - C%d - SC%d\n", 
+            *frame_count, 
+            *second_count, 
+            current_calendar_time.tm_sec,
+            second_count_to_calendar_diff
+    ) ;
 }
