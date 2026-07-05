@@ -3,11 +3,6 @@
 #include <stdio.h>
 #include "event_loop_time.h"
 
-#define FPS 60
-#define FRAME_TIME_NANOSECONDS ( 1000000000LL / FPS )
-// APIs expect nanoseconds, so this avoids conversion
-// long long to handle the large counts from using nanoseconds
-
 
 long long get_current_time_nanoseconds( void ) {
     struct timespec timespec ;
@@ -33,7 +28,7 @@ struct tm get_current_calendar_time( void ) {
     return *localtime( &raw_time ) ;
 }
 
-void print_loop_info( int* frame_count, int* second_count ) {
+void print_loop_info( int FPS, int* frame_count, int* second_count ) {
     if( *frame_count == FPS ) {
         *frame_count = 0 ;
         *second_count++ ;

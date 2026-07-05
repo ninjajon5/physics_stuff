@@ -15,7 +15,7 @@ TODO
 */
 
 enum Renderer renderer = SDL3 ;
-static const int FPS = 60 ;
+const int FPS = 60 ;
 static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 // APIs expect nanoseconds, so this avoids conversion
 // long long to handle the large counts from using nanoseconds
@@ -66,7 +66,7 @@ int main( int argc, char* argv[] ) {
         long long frame_elapsed_time = get_current_time_nanoseconds() - frame_start_time ;
         sleep_for_nanoseconds( FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;
         
-        if( DEBUG ) print_loop_info( &frame_count, &secound_count ) ;
+        if( DEBUG ) print_loop_info( FPS, &frame_count, &secound_count ) ;
     }
 
     renderer_shutdown( renderer ) ;
