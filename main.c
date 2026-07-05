@@ -51,7 +51,7 @@ int main( int argc, char* argv[] ) {
     } ;
 
     int frame_count = 0 ;
-    int secound_count = 0 ;
+    int second_count = 0 ;
     int running = 1 ;
     while( running ) {
         long long frame_start_time = get_current_time_nanoseconds() ;
@@ -66,7 +66,7 @@ int main( int argc, char* argv[] ) {
         long long frame_elapsed_time = get_current_time_nanoseconds() - frame_start_time ;
         sleep_for_nanoseconds( FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;
         
-        if( DEBUG ) print_loop_info( FPS, &frame_count, &secound_count ) ;
+        if( DEBUG ) print_loop_info( FPS, &frame_count, &second_count ) ;
     }
 
     renderer_shutdown( renderer ) ;
