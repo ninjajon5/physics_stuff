@@ -31,9 +31,9 @@ struct tm get_current_calendar_time( void ) {
 void print_loop_info( int FPS, int* frame_count, int* second_count ) {
     if( *frame_count == FPS ) {
         *frame_count = 0 ;
-        *second_count++ ;
+        (*second_count)++ ;
     } else {
-        *frame_count++ ;
+        (*frame_count)++ ;
     }
     
     struct tm current_calendar_time = get_current_calendar_time() ;
