@@ -19,6 +19,7 @@ static const int FPS = 60 ;
 static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 // APIs expect nanoseconds, so this avoids conversion
 // long long to handle the large counts from using nanoseconds
+static const int DEBUG = 1 ;
 
 
 int _handle_arguments( int argc, char* argv[], enum Renderer* renderer ) {
