@@ -36,9 +36,9 @@ int _handle_arguments( int argc, char* argv[], enum Renderer* renderer ) {
 }
 
 
-void _debug( int FPS, long long frame_elapsed_time, int* frame_count, int* second_count ) {
+void _debug( int FPS, long long spare_time, int* frame_count, int* second_count ) {
     print_loop_info( FPS, frame_count, second_count ) ;
-    printf( "Spare time: %lld\n", FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;
+    printf( "Spare time: %lld\n", spare_time ) ;
 }
 
 
@@ -70,9 +70,10 @@ int main( int argc, char* argv[] ) {
         renderer_draw_rectangle( renderer, &rectangles[0] ) ;
         
         long long frame_elapsed_time = get_current_time_nanoseconds() - frame_start_time ;
-        sleep_for_nanoseconds( FRAME_TIME_NANOSECONDS - frame_elapsed_time ) ;
+        long long sleep_time = FRAME_TIME_NANOSECONDS - frame_elapsed_time ;
+        sleep_for_nanoseconds( sleep_time ) ;
         
-        if( DEBUG ) _debug( FPS, frame_elapsed_time, &frame_count, &second_count ) ;
+        if( DEBUG ) _debug( FPS, sleep_time, &frame_count, &second_count ) ;
     }
 
     renderer_shutdown( renderer ) ;
