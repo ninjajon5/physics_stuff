@@ -6,7 +6,6 @@
 
 /*
 TODO
-- figure out why the speeds are different between renderers
 - accept user input to exit loop
 - add tests to rectangle
 - add collision
