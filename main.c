@@ -8,6 +8,7 @@
 /*
 TODO
 - figure out why the speeds are different between renderers
+- accept user input to exit loop
 - add tests to rectangle
 - add collision
 - add bounce
@@ -36,9 +37,10 @@ int _handle_arguments( int argc, char* argv[], enum Renderer* renderer ) {
 }
 
 
-void _debug( int FPS, long long spare_time, int* frame_count, int* second_count ) {
+void _debug( int FPS, long long frame_start_time, long long last_frame_start_time, long long sleep_time, int* frame_count, int* second_count ) {
     print_loop_info( FPS, frame_count, second_count ) ;
-    printf( "Spare time: %lld\n", spare_time ) ;
+    printf( "Spare time: %lld\n", FRAME_TIME_NANOSECONDS - ( frame_start_time - last_frame_start_time ) ) ;
+    printf( "Sleep time: %lld\n", sleep_time ) ;
 }
 
 
@@ -59,6 +61,7 @@ int main( int argc, char* argv[] ) {
     int frame_count = 0 ;
     int second_count = 0 ;
     int running = 1 ;
+    long long last_frame_start_time = 0 ;
     while( running ) {
         long long frame_start_time = get_current_time_nanoseconds() ;
 
@@ -73,7 +76,8 @@ int main( int argc, char* argv[] ) {
         long long sleep_time = FRAME_TIME_NANOSECONDS - frame_elapsed_time ;
         sleep_for_nanoseconds( sleep_time ) ;
         
-        if( DEBUG ) _debug( FPS, sleep_time, &frame_count, &second_count ) ;
+        if( DEBUG ) _debug( FPS, frame_start_time, last_frame_start_time, sleep_time, &frame_count, &second_count ) ;
+        last_frame_start_time = frame_start_time ;
     }
 
     renderer_shutdown( renderer ) ;
