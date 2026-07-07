@@ -3,7 +3,6 @@
 #include "rendering/renderer.h"
 #include <stdio.h>
 
-#define _POSIX_C_SOURCE 199309L // feature test macro to allow POSIX clock_gettime and CLOCK_MONOTONIC
 
 /*
 TODO
