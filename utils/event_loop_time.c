@@ -52,9 +52,6 @@ void debug( int FPS, struct time_info* time_info ) {
     print_loop_info( FPS, &(time_info->frame_count), &(time_info->second_count) ) ;
     
     long long elapsed_time = time_info->frame_start_time - time_info->last_frame_start_time ;
-    printf(
-            "Spare time: %lld\n",
-            time_info->frame_time_nanoseconds - elapsed_time 
-    ) ;
+    printf( "Start time diff: %lld\n", elapsed_time ) ;
     printf( "Sleep time: %lld\n", time_info->sleep_time ) ;
 }

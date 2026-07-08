@@ -50,7 +50,7 @@ int main( int argc, char* argv[] ) {
         .y_velocity = 0.0 
     } ;
 
-    struct time_info time_info = { .frame_time_nanoseconds = FRAME_TIME_NANOSECONDS } ;
+    struct time_info time_info = {} ;
     int running = 1 ;
     while( running ) {
         long long frame_start_time = get_current_time_nanoseconds() ;
