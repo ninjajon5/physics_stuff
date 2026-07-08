@@ -36,13 +36,6 @@ int _handle_arguments( int argc, char* argv[], enum Renderer* renderer ) {
 }
 
 
-void _debug( int FPS, long long frame_start_time, long long last_frame_start_time, long long sleep_time, int* frame_count, int* second_count ) {
-    print_loop_info( FPS, frame_count, second_count ) ;
-    printf( "Spare time: %lld\n", FRAME_TIME_NANOSECONDS - ( frame_start_time - last_frame_start_time ) ) ;
-    printf( "Sleep time: %lld\n", sleep_time ) ;
-}
-
-
 int main( int argc, char* argv[] ) {
     if( !_handle_arguments( argc, argv, &renderer ) ) return 1 ;
 
@@ -57,10 +50,8 @@ int main( int argc, char* argv[] ) {
         .y_velocity = 0.0 
     } ;
 
-    int frame_count = 0 ;
-    int second_count = 0 ;
+    struct time_info time_info = { .frame_time_nanoseconds = FRAME_TIME_NANOSECONDS } ;
     int running = 1 ;
-    long long last_frame_start_time = 0 ;
     while( running ) {
         long long frame_start_time = get_current_time_nanoseconds() ;
 
@@ -72,11 +63,11 @@ int main( int argc, char* argv[] ) {
         renderer_draw_rectangle( renderer, &rectangles[0] ) ;
         
         long long frame_elapsed_time = get_current_time_nanoseconds() - frame_start_time ;
-        long long sleep_time = FRAME_TIME_NANOSECONDS - frame_elapsed_time ;
-        sleep_for_nanoseconds( sleep_time ) ;
+        time_info.sleep_time = FRAME_TIME_NANOSECONDS - frame_elapsed_time ;
+        sleep_for_nanoseconds( time_info.sleep_time ) ;
         
-        if( DEBUG ) _debug( FPS, frame_start_time, last_frame_start_time, sleep_time, &frame_count, &second_count ) ;
-        last_frame_start_time = frame_start_time ;
+        if( DEBUG ) debug( FPS, &time_info ) ;
+        time_info.last_frame_start_time = frame_start_time ;
     }
 
     renderer_shutdown( renderer ) ;
