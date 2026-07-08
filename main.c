@@ -6,7 +6,6 @@
 
 /*
 TODO
-- refactor debug to live in utils/ and use a time info struct
 - accept user input to exit loop
 - add tests to rectangle
 - add collision
