@@ -19,6 +19,8 @@ void text_renderer_draw_rectangle( struct rectangle *rectangle ) {
 }
 
 int text_renderer_quit_requested() {
+    char input_character = _text_renderer_get_input_character() ;
+    if( input_character == 'q' ) return 1 ;
     return 0 ;
 }
 
@@ -28,7 +30,7 @@ void text_renderer_shutdown( void ) {
 
 char _text_renderer_get_input_character( void ) {
     #ifdef _WIN32
-        if( _khbit() ) { // check the keyboard for input, otherwise return 0
+        if( _kbhit() ) { // check the keyboard for input, otherwise return 0
             return _getch() ; // read character from the buffer
         }
     #else
