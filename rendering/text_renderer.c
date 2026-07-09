@@ -20,8 +20,8 @@ int text_renderer_init() {
 
             raw_termios.c_lflag &= ~( ICANON | ECHO ) ; // disable canonical mode and echo, so we don't need to press enter and typed characters aren't echoed
             
-            raw.c_cc[ VMIN ] = 0 ; // minimum characters to read
-            raw.c_cc[ VTIME ] = 0 ; // timeout is 0 (non-blocking read)
+            raw_termios.c_cc[ VMIN ] = 0 ; // minimum characters to read
+            raw_termios.c_cc[ VTIME ] = 0 ; // timeout is 0 (non-blocking read)
             
             tcsetattr( STDIN_FILENO, TCSAFLUSH, &raw_termios ) ;
             terminal_modified = 1 ;
