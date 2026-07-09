@@ -40,6 +40,7 @@ int sdl3_quit_requested() {
     SDL_Event event ;
     while( SDL_PollEvent( &event ) ) {
         if( event.type == SDL_EVENT_QUIT ) return 1 ;
+        if( event.type == SDL_EVENT_KEY_DOWN && event.key.key == SDLK_q ) return 1 ;
     }
     return 0 ;
 }
