@@ -6,7 +6,6 @@
 
 /*
 TODO
-- accept user input to exit loop (fix in linux using termios.h)
 - add tests to rectangle
 - add collision
 - add bounce
