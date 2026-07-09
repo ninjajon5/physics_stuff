@@ -5,13 +5,29 @@
     #include <conio.h>
 #else
     #include <unistd.h>
-    #include <sys/select.h>
+    #include <termios.h>
+    
+    static struct termios original_termios ; // original terminal settings
+    static int terminal_modified = 0 ;
 #endif
 
 char _text_renderer_get_input_character( void ) ;
 
 int text_renderer_init() {
-    return 1 ;
+    #ifndef _WIN32
+        if( tcgetattr( STDIN_FILENO, &original_termios ) == 0 ) { // attempt to write STDIN_FILENO attributes into original_termios
+            struct termios raw_termios = original_termios ;
+
+            raw_termios.c_lflag &= ~( ICANON | ECHO ) ; // disable canonical mode and echo, so we don't need to press enter and typed characters aren't echoed
+            
+            raw.c_cc[ VMIN ] = 0 ; // minimum characters to read
+            raw.c_cc[ VTIME ] = 0 ; // timeout is 0 (non-blocking read)
+            
+            tcsetattr( STDIN_FILENO, TCSAFLUSH, &raw_termios ) ;
+            terminal_modified = 1 ;
+        }
+    #endif
+        return 1 ;
 }
 
 void text_renderer_draw_rectangle( struct rectangle *rectangle ) {
@@ -25,7 +41,11 @@ int text_renderer_quit_requested() {
 }
 
 void text_renderer_shutdown( void ) {
-    // no shutdown needed
+    #ifndef _WIN32
+        if( terminal_modified ) {
+            tcsetattr( STDIN_FILENO, TCSAFLUSH, &original_termios ) ; // restore original termios settings
+        }
+    #endif
 }
 
 char _text_renderer_get_input_character( void ) {
@@ -34,18 +54,9 @@ char _text_renderer_get_input_character( void ) {
             return _getch() ; // read character from the buffer
         }
     #else
-        struct timeval tv = { 0, 0 } ; // needed for polling - set values to 0 to indicate no wait time
-        
-        fd_set fds ; // create a file descriptor sect
-        FD_ZERO( &fds ) ; // clear all file descriptors from the set
-        FD_SET( STDIN_FILENO, &fds ) ; // add standard input to the set
-
-        select( STDIN_FILENO + 1, &fds, NULL, NULL, &tv ) ; // monitor the set, reading it instantly
-        if( FD_ISSET( STDIN_FILENO, &fds ) ) { // check if the select() flagged the set as ready to read
-            char ch ;
-            if( read( STDIN_FILENO, &ch, 1 ) == 1 ) { // attempt to read the ch
-                return ch ; // if successful, return it
-            }
+        char ch ;
+        if( read( STDIN_FILENO, &ch, 1 ) == 1 ) {
+            return ch ;
         }
     #endif
         return 0 ;
