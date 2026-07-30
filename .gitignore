@@ -1,5 +1,4 @@
 physics
 tests/test
-*.sh
 *.bat
 *.exe
