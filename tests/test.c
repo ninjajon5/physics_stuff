@@ -18,7 +18,7 @@ int run_tests( test_function *tests, int test_count ) {
 
     printf( "\n==============================\n" ) ;
     if( passed_test_count == test_count ) {
-        printf("All tests pass!") ;
+        printf("All tests pass!\n") ;
     } else {
         printf( "Tests passed:%d\n", passed_test_count ) ;
         printf( "Tests failed: %d\n", failed_test_count ) ;
