@@ -55,7 +55,7 @@ int main( int argc, char* argv[] ) {
 
         if( renderer_quit_requested( renderer ) ) running = 0 ;
 
-        rectangle_apply_gravity( &rectangles[0], 1.0 ) ;
+        rectangle_apply_gravity( &rectangles[0], 0.2 ) ;
         rectangle_apply_velocity( &rectangles[0] ) ;
 
         renderer_draw_rectangle( renderer, &rectangles[0] ) ;
