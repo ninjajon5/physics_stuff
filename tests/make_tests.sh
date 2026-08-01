@@ -1,1 +1,1 @@
-gcc -o test test.c test_rectangles.c
+gcc -o test test.c test_rectangles.c ../rectangles/rectangle.c
