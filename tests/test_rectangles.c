@@ -40,6 +40,30 @@ int _2_test_apply_velocity_updates_position_correctly( void ) {
     return 1 ;
 }
 
+int _3_test_vertically_overlapping_rectangles_detect_collision( void ) {
+    struct rectangle top_rectangle = {
+        .x = 0.0,
+        .y = 0.0,
+        .width = 2.0,
+        .height = 2.0
+    } ;
+
+    struct rectangle bottom_rectangle = {
+        .x = 0.0,
+        .y = 1.0,
+        .width = 2.0,
+        .height = 2.0
+    } ;
+
+    struct rectangle rectangles[2] ;
+    rectangles[0] = top_rectangle ;
+    rectangles[1] = bottom_rectangle ; 
+
+    TASSERT( rectangle_is_collision( rectangles ) ) ;
+
+    return 1 ;
+}
+
 
 test_function tests[] = {
     _1_test_apply_gravity_increases_y_velocity,
