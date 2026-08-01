@@ -11,12 +11,15 @@ TODO
 - add directional launch
 */
 
+static const int DEBUG = 1 ;
 enum Renderer renderer = SDL3 ;
 const int FPS = 60 ;
 static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 // APIs expect nanoseconds, so this avoids conversion
 // long long to handle the large counts from using nanoseconds
-static const int DEBUG = 1 ;
+
+static const float starting_y_velocity = 0.0 ;
+static const float gravity = 0.2 ;
 
 
 int _handle_arguments( int argc, char* argv[], enum Renderer* renderer ) {
@@ -44,7 +47,7 @@ int main( int argc, char* argv[] ) {
         .y = 0.0,
         .width = 15.0,
         .height = 15.0,
-        .y_velocity = 0.0 
+        .y_velocity = starting_y_velocity 
     } ;
 
     struct time_info time_info = {} ;
@@ -54,7 +57,7 @@ int main( int argc, char* argv[] ) {
 
         if( renderer_quit_requested( renderer ) ) running = 0 ;
 
-        rectangle_apply_gravity( &rectangles[0], 0.2 ) ;
+        rectangle_apply_gravity( &rectangles[0], gravity ) ;
         rectangle_apply_velocity( &rectangles[0] ) ;
 
         renderer_draw_rectangle( renderer, &rectangles[0] ) ;
