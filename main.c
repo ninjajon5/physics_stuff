@@ -6,7 +6,6 @@
 
 /*
 TODO
-- add tests to rectangle
 - add collision
 - add bounce
 - add directional launch
