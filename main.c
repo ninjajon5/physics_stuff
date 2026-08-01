@@ -18,7 +18,11 @@ static const long long FRAME_TIME_NANOSECONDS = 1000000000LL / FPS ;
 // APIs expect nanoseconds, so this avoids conversion
 // long long to handle the large counts from using nanoseconds
 
-static const float starting_y_velocity = 0.0 ;
+static const float starting_x = 300.0 ;
+static const float starting_y = 200.0 ;
+static const float starting_width = 15.0 ;
+static const float starting_height = 15.0 ;
+static const float starting_y_velocity = -10.0 ;
 static const float gravity = 0.2 ;
 
 
@@ -43,10 +47,10 @@ int main( int argc, char* argv[] ) {
     
     struct rectangle rectangles[ 1024 ] ;
     rectangles[0] = (struct rectangle) { 
-        .x = 300.0,
-        .y = 0.0,
-        .width = 15.0,
-        .height = 15.0,
+        .x = starting_x,
+        .y = starting_y,
+        .width = starting_width,
+        .height = starting_height,
         .y_velocity = starting_y_velocity 
     } ;
 
