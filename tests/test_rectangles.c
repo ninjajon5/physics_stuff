@@ -74,7 +74,7 @@ int _4_test_horizontally_overlapping_rectangles_detect_collision( void ) {
 
     struct rectangle right_rectangle = {
         .x = 1.0,
-        .y = 8.0,
+        .y = 0.0,
         .width = 2.0,
         .height = 2.0
     } ;
@@ -88,11 +88,36 @@ int _4_test_horizontally_overlapping_rectangles_detect_collision( void ) {
 }
 
 
+int _5_test_rectangles_only_overlapping_vertically_do_not_detect_collision( void ) {
+    struct rectangle top_rectangle = {
+        .x = 0.0,
+        .y = 0.0,
+        .width = 2.0,
+        .height = 2.0
+    } ;
+
+    struct rectangle bottom_rectangle = {
+        .x = 100.0,
+        .y = 1.0,
+        .width = 2.0,
+        .height = 2.0
+    } ;
+
+    TASSERT( !rectangle_is_collision( 
+        &top_rectangle,
+        &bottom_rectangle
+    ) ) ;
+
+    return 1 ;
+}
+
+
 test_function tests[] = {
     _1_test_apply_gravity_increases_y_velocity,
     _2_test_apply_velocity_updates_position_correctly,
     _3_test_vertically_overlapping_rectangles_detect_collision,
-    _4_test_horizontally_overlapping_rectangles_detect_collision
+    _4_test_horizontally_overlapping_rectangles_detect_collision,
+    _5_test_rectangles_only_overlapping_vertically_do_not_detect_collision
 } ;
 int test_count = sizeof( tests ) / sizeof( tests[0] ) ;
 

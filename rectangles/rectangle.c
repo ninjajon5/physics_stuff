@@ -17,15 +17,28 @@ int rectangle_is_collision(
     float rectangle_A_lowest_y = (
         rectangle_A->y + rectangle_A->height
     ) ;
+    float rectangle_A_leftmost_x = rectangle_A->x ;
+    float rectangle_A_rightmost_x = (
+        rectangle_A->x + rectangle_A->width
+    ) ;
 
     float rectangle_B_highest_y = rectangle_B->y ;
     float rectangle_B_lowest_y = (
         rectangle_B->y + rectangle_B->height
     ) ;
+    float rectangle_B_leftmost_x = rectangle_B->x ;
+    float rectangle_B_rightmost_x = (
+        rectangle_B->x + rectangle_B->width
+    ) ;
+
 
     if( rectangle_A_lowest_y < rectangle_B_highest_y ) {
         return 0 ;
     } else if ( rectangle_A_highest_y > rectangle_B_lowest_y ) {
+        return 0 ;
+    } else if ( rectangle_A_rightmost_x < rectangle_B_leftmost_x ) {
+        return 0 ;
+    } else if ( rectangle_A_leftmost_x > rectangle_B_rightmost_x ) {
         return 0 ;
     } else {
         return 1 ;
