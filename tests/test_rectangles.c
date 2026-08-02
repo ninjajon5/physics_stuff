@@ -55,11 +55,10 @@ int _3_test_vertically_overlapping_rectangles_detect_collision( void ) {
         .height = 2.0
     } ;
 
-    struct rectangle rectangles[2] ;
-    rectangles[0] = top_rectangle ;
-    rectangles[1] = bottom_rectangle ; 
-
-    TASSERT( rectangle_is_collision( rectangles ) ) ;
+    TASSERT( rectangle_is_collision( 
+        &top_rectangle,
+        &bottom_rectangle
+    ) ) ;
 
     return 1 ;
 }
@@ -67,7 +66,8 @@ int _3_test_vertically_overlapping_rectangles_detect_collision( void ) {
 
 test_function tests[] = {
     _1_test_apply_gravity_increases_y_velocity,
-    _2_test_apply_velocity_updates_position_correctly
+    _2_test_apply_velocity_updates_position_correctly,
+    _3_test_vertically_overlapping_rectangles_detect_collision
 } ;
 int test_count = sizeof( tests ) / sizeof( tests[0] ) ;
 

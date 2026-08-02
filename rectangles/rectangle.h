@@ -12,5 +12,9 @@ struct rectangle {
 
 void rectangle_apply_gravity( struct rectangle *rectangle, float gravity ) ;
 void rectangle_apply_velocity( struct rectangle *rectangle ) ;
+int rectangle_is_collision( 
+    struct rectangle *rectangle_A,
+    struct rectangle *rectangle_B
+) ;
 
 #endif
