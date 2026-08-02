@@ -6,7 +6,6 @@
 
 /*
 TODO
-- add collision
 - add bounce
 - add directional launch
 */
