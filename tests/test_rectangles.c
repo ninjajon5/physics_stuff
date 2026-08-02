@@ -64,10 +64,35 @@ int _3_test_vertically_overlapping_rectangles_detect_collision( void ) {
 }
 
 
+int _4_test_horizontally_overlapping_rectangles_detect_collision( void ) {
+    struct rectangle left_rectangle = {
+        .x = 0.0,
+        .y = 0.0,
+        .width = 2.0,
+        .height = 2.0
+    } ;
+
+    struct rectangle right_rectangle = {
+        .x = 1.0,
+        .y = 8.0,
+        .width = 2.0,
+        .height = 2.0
+    } ;
+
+    TASSERT( rectangle_is_collision( 
+        &left_rectangle,
+        &right_rectangle
+    ) ) ;
+
+    return 1 ;
+}
+
+
 test_function tests[] = {
     _1_test_apply_gravity_increases_y_velocity,
     _2_test_apply_velocity_updates_position_correctly,
-    _3_test_vertically_overlapping_rectangles_detect_collision
+    _3_test_vertically_overlapping_rectangles_detect_collision,
+    _4_test_horizontally_overlapping_rectangles_detect_collision
 } ;
 int test_count = sizeof( tests ) / sizeof( tests[0] ) ;
 
