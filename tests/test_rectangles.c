@@ -158,8 +158,31 @@ int _7_test_colliding_rectangles_invert_y_velocity( void ) {
     return 1 ;
 }
 
-int _8_test_colliding_frozen_rectangles_does_not_invert_y_velocity( void ) {
-    // placeholder
+int _8_test_colliding_non_deflectable_rectangles_do_not_invert_y_velocity( void ) {
+     struct rectangle top_rectangle = {
+        .x = 0.0,
+        .y = 0.0,
+        .width = 2.0,
+        .height = 2.0,
+        .y_velocity = 1.0,
+        .deflectable = 0
+    } ;
+
+    struct rectangle bottom_rectangle = {
+        .x = 0.0,
+        .y = 1.0,
+        .width = 2.0,
+        .height = 2.0,
+        .y_velocity = 0.0
+    } ;
+
+    struct rectangle rectangles[2] = { top_rectangle, bottom_rectangle } ;
+
+    rectangle_apply_collisions( rectangles, 2 ) ;
+
+    TASSERT( rectangles[0].y_velocity == 1.0 ) ;
+
+    return 1 ;
 }
 
 
@@ -170,7 +193,8 @@ test_function tests[] = {
     _4_test_horizontally_overlapping_rectangles_detect_collision,
     _5_test_rectangles_only_overlapping_vertically_do_not_detect_collision,
     _6_test_rectangles_only_overlapping_horizontally_do_not_detect_collision,
-    _7_test_colliding_rectangles_invert_y_velocity
+    _7_test_colliding_rectangles_invert_y_velocity,
+    _8_test_colliding_non_deflectable_rectangles_do_not_invert_y_velocity
 } ;
 int test_count = sizeof( tests ) / sizeof( tests[0] ) ;
 
