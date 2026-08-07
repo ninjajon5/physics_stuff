@@ -150,7 +150,7 @@ int _7_test_colliding_rectangles_invert_y_velocity( void ) {
 
     struct rectangle rectangles[2] = { top_rectangle, bottom_rectangle } ;
 
-    rectangle_apply_collisions( rectangles ) ;
+    rectangle_apply_collisions( rectangles, 2 ) ;
 
     TASSERT( top_rectangle.y_velocity == -1.0 ) ;
 
