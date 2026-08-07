@@ -1,5 +1,13 @@
 #include "rectangle.h"
 
+void _rectangle_apply_collisions_after_current_rectangle(
+    struct rectangle *current_rectangle,
+    int current_rectangle_index,
+    struct rectangle *rectangles,
+    int rectangle_count
+) ;
+
+
 void rectangle_apply_gravity( struct rectangle *rectangle, float gravity ) {
     rectangle->y_velocity += gravity ;
 }
@@ -12,14 +20,9 @@ void rectangle_apply_velocity( struct rectangle *rectangle ) {
 void rectangle_apply_collisions( struct rectangle *rectangles, int rectangle_count ) {
     for( int i = 0 ; i < ( rectangle_count - 1 ) ; i++ ) {
         struct rectangle *current_rectangle = &rectangles[i] ;
-        
-        for( int j = ( i + 1 ) ; j < rectangle_count ; j++ ) {
-            struct rectangle *comparison_rectangle = &rectangles[j] ;
-            if( rectangle_is_collision( current_rectangle, comparison_rectangle ) ) {
-                current_rectangle->y_velocity *= -1 ;
-                comparison_rectangle->y_velocity *= 1 ;
-            }
-        }
+        _rectangle_apply_collisions_after_current_rectangle(
+            current_rectangle, i, rectangles, rectangle_count
+        ) ;
     }
 }
 
@@ -56,5 +59,21 @@ int rectangle_is_collision(
         return 0 ;
     } else {
         return 1 ;
+    }
+}
+
+void _rectangle_apply_collisions_after_current_rectangle( 
+    struct rectangle *current_rectangle,
+    int current_rectangle_index,
+    struct rectangle *rectangles,
+    int rectangle_count
+) {
+    int starting_comparison_index = current_rectangle_index + 1 ;
+    for( int j = starting_comparison_index ; j < rectangle_count ; j++ ) {
+        struct rectangle *comparison_rectangle = &rectangles[j] ;
+        if( rectangle_is_collision( current_rectangle, comparison_rectangle ) ) {
+            current_rectangle->y_velocity *= -1 ;
+            comparison_rectangle->y_velocity *= 1 ;
+        }
     }
 }
