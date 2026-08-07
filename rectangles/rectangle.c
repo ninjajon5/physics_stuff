@@ -9,6 +9,20 @@ void rectangle_apply_velocity( struct rectangle *rectangle ) {
     rectangle->x += rectangle->x_velocity ;
 }
 
+void rectangle_apply_collisions( struct rectangle *rectangles, int rectangle_count ) {
+    for( int i = 0 ; i < ( rectangle_count - 1 ) ; i++ ) {
+        struct rectangle *current_rectangle = &rectangles[i] ;
+        
+        for( int j = ( i + 1 ) ; j < rectangle_count ; j++ ) {
+            struct rectangle *comparison_rectangle = &rectangles[j] ;
+            if( rectangle_is_collision( current_rectangle, comparison_rectangle ) ) {
+                current_rectangle->y_velocity *= -1 ;
+                comparison_rectangle->y_velocity *= 1 ;
+            }
+        }
+    }
+}
+
 int rectangle_is_collision( 
     struct rectangle *rectangle_A,
     struct rectangle *rectangle_B
