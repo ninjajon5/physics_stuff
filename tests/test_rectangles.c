@@ -138,21 +138,22 @@ int _7_test_colliding_rectangles_invert_y_velocity( void ) {
         .y = 0.0,
         .width = 2.0,
         .height = 2.0,
-        .y_velocity = 1.0,
+        .y_velocity = 1.0
     } ;
 
     struct rectangle bottom_rectangle = {
         .x = 0.0,
         .y = 1.0,
         .width = 2.0,
-        .height = 2.0
+        .height = 2.0,
+        .y_velocity = 0.0
     } ;
 
     struct rectangle rectangles[2] = { top_rectangle, bottom_rectangle } ;
 
     rectangle_apply_collisions( rectangles, 2 ) ;
 
-    TASSERT( top_rectangle.y_velocity == -1.0 ) ;
+    TASSERT( rectangles[0].y_velocity == -1.0 ) ;
 
     return 1 ;
 }
