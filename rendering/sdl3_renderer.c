@@ -2,7 +2,7 @@
 #include "sdl3_renderer.h"
 
 static SDL_Window *window = NULL ;
-static SDL_Renderer * renderer = NULL ;
+static SDL_Renderer *renderer = NULL ;
 
 int sdl3_renderer_init( int window_width, int window_height ) {
     if( !SDL_Init( SDL_INIT_VIDEO ) ) return 0 ;
@@ -19,10 +19,12 @@ int sdl3_renderer_init( int window_width, int window_height ) {
     return 1 ;
 }
 
-void sdl3_renderer_draw_rectangle( struct rectangle *rectangle ) {
+void sdl3_renderer_clear( void ) {
     SDL_SetRenderDrawColor( renderer, 0, 0, 0, SDL_ALPHA_OPAQUE ) ;
     SDL_RenderClear( renderer ) ;
+}
 
+void sdl3_renderer_draw_rectangle( struct rectangle *rectangle ) {
     SDL_SetRenderDrawColor( renderer, 0, 0, 255, SDL_ALPHA_OPAQUE ) ;
     SDL_FRect sdl_rectangle = {
         .x = rectangle->x,
@@ -31,6 +33,9 @@ void sdl3_renderer_draw_rectangle( struct rectangle *rectangle ) {
         .h = rectangle->height
     } ;
     SDL_RenderFillRect( renderer, &sdl_rectangle ) ;
+}
+
+void sdl3_renderer_present( void ) {
     SDL_RenderPresent( renderer ) ;
 }
 

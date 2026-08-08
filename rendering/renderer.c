@@ -29,6 +29,18 @@ int renderer_init( enum Renderer renderer, int window_width, int window_height )
     }
 }
 
+void renderer_clear( enum Renderer renderer ) {
+    switch( renderer ) {
+        case TEXT:
+            text_renderer_clear() ;
+            break ;
+        case SDL3:
+            sdl3_renderer_clear() ;
+            break ;
+        default:
+            break ;
+    }
+}
 
 void renderer_draw_rectangle( enum Renderer renderer, struct rectangle *rectangle ) {
     switch( renderer ) {
@@ -42,6 +54,19 @@ void renderer_draw_rectangle( enum Renderer renderer, struct rectangle *rectangl
             break ;
     }
 } 
+
+void renderer_present( enum Renderer renderer ) {
+    switch( renderer ) {
+        case TEXT:
+            text_renderer_present() ;
+            break ;
+        case SDL3:
+            sdl3_renderer_present() ;
+            break ;
+        default:
+            break ;
+    }
+}
 
 int renderer_quit_requested( enum Renderer renderer ) {
     switch( renderer ) {

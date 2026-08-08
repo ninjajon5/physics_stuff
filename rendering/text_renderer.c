@@ -30,8 +30,16 @@ int text_renderer_init() {
         return 1 ;
 }
 
+void text_renderer_clear( void ) {
+    // do nothing
+}
+
 void text_renderer_draw_rectangle( struct rectangle *rectangle ) {
     printf( "%f\n", rectangle->y ) ;
+}
+
+void text_renderer_present( void ) {
+    // do nothing
 }
 
 int text_renderer_quit_requested() {

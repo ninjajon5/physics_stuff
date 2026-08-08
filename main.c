@@ -72,9 +72,10 @@ int main( int argc, char* argv[] ) {
         rectangle_apply_velocity( &rectangles[0] ) ;
         rectangle_apply_collisions( rectangles, 2 ) ;
 
+        renderer_clear( renderer ) ;
         renderer_draw_rectangle( renderer, &rectangles[0] ) ;
         renderer_draw_rectangle( renderer, &rectangles[1] ) ;
-       
+        renderer_present( renderer ) ;       
 
         long long frame_elapsed_time = get_current_time_nanoseconds() - frame_start_time ;
         time_info.sleep_time = FRAME_TIME_NANOSECONDS - frame_elapsed_time ;
