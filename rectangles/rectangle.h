@@ -8,6 +8,7 @@ struct rectangle {
     float height ;
     float x_velocity ;
     float y_velocity ;
+    int deflectable ;
 } ;
 
 void rectangle_apply_gravity( struct rectangle *rectangle, float gravity ) ;

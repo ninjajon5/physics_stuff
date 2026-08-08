@@ -6,6 +6,7 @@ void _rectangle_apply_collisions_after_current_rectangle(
     struct rectangle *rectangles,
     int rectangle_count
 ) ;
+void _rectangle_deflect( struct rectangle *rectangle ) ;
 
 
 void rectangle_apply_gravity( struct rectangle *rectangle, float gravity ) {
@@ -72,8 +73,12 @@ void _rectangle_apply_collisions_after_current_rectangle(
     for( int j = starting_comparison_index ; j < rectangle_count ; j++ ) {
         struct rectangle *comparison_rectangle = &rectangles[j] ;
         if( rectangle_is_collision( current_rectangle, comparison_rectangle ) ) {
-            current_rectangle->y_velocity *= -1 ;
-            comparison_rectangle->y_velocity *= 1 ;
+            _rectangle_deflect( current_rectangle ) ;
+            _rectangle_deflect( comparison_rectangle ) ;
         }
     }
+}
+
+void _rectangle_deflect( struct rectangle *rectangle ) {
+    if( rectangle->deflectable ) rectangle->y_velocity *= -1 ;
 }

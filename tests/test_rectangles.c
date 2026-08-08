@@ -2,13 +2,24 @@
 #include "../rectangles/rectangle.h"
 
 
+void _rectangle_factory( struct rectangle *rectangle ) {
+    rectangle->x = 0.0 ;
+    rectangle->y = 0.0 ;
+    rectangle->width = 1.0 ;
+    rectangle->height = 1.0 ;
+    rectangle->x_velocity = 0.0 ;
+    rectangle->y_velocity = 0.0 ;
+    rectangle->deflectable = 1 ;
+}
+
+
 int _1_test_apply_gravity_increases_y_velocity( void ) {
     float starting_y_velocity = 0.0 ;
     float gravity = 1.0 ;
 
-    struct rectangle rectangle = {
-        .y_velocity = starting_y_velocity
-    } ; 
+    struct rectangle rectangle ;
+    _rectangle_factory( &rectangle ) ;
+    rectangle.y_velocity = starting_y_velocity ;
 
     rectangle_apply_gravity( &rectangle, gravity ) ;
 
@@ -20,15 +31,13 @@ int _1_test_apply_gravity_increases_y_velocity( void ) {
 int _2_test_apply_velocity_updates_position_correctly( void ) {
     float starting_x = 0.0 ;
     float starting_y = 0.0 ;
-    float starting_x_velocity = 1.0 ;
-    float starting_y_velocity = 2.0 ;
 
-    struct rectangle rectangle = {
-        .x = starting_x,
-        .y = starting_y,
-        .x_velocity = starting_x_velocity,
-        .y_velocity = starting_y_velocity
-    } ;
+    struct rectangle rectangle ;
+    _rectangle_factory( &rectangle ) ;
+    rectangle.x = starting_x ;
+    rectangle.y = starting_y ;
+    rectangle.x_velocity = 1.0 ;
+    rectangle.y_velocity = 2.0 ;
 
     rectangle_apply_velocity( &rectangle ) ;
 
@@ -41,19 +50,19 @@ int _2_test_apply_velocity_updates_position_correctly( void ) {
 }
 
 int _3_test_vertically_overlapping_rectangles_detect_collision( void ) {
-    struct rectangle top_rectangle = {
-        .x = 0.0,
-        .y = 0.0,
-        .width = 2.0,
-        .height = 2.0
-    } ;
+    struct rectangle top_rectangle ;
+    _rectangle_factory( &top_rectangle ) ;
+    top_rectangle.x = 0.0 ;
+    top_rectangle.y = 0.0 ;
+    top_rectangle.width = 2.0 ;
+    top_rectangle.height = 2.0 ;
 
-    struct rectangle bottom_rectangle = {
-        .x = 0.0,
-        .y = 1.0,
-        .width = 2.0,
-        .height = 2.0
-    } ;
+    struct rectangle bottom_rectangle ;
+    _rectangle_factory( &bottom_rectangle ) ;
+    bottom_rectangle.x = 0.0 ;
+    bottom_rectangle.y = 1.0 ;
+    bottom_rectangle.width = 2.0 ;
+    bottom_rectangle.height = 2.0 ;
 
     TASSERT( rectangle_is_collision( 
         &top_rectangle,
@@ -64,19 +73,19 @@ int _3_test_vertically_overlapping_rectangles_detect_collision( void ) {
 }
 
 int _4_test_horizontally_overlapping_rectangles_detect_collision( void ) {
-    struct rectangle left_rectangle = {
-        .x = 0.0,
-        .y = 0.0,
-        .width = 2.0,
-        .height = 2.0
-    } ;
+    struct rectangle left_rectangle ;
+    _rectangle_factory( &left_rectangle ) ;
+    left_rectangle.x = 0.0 ;
+    left_rectangle.y = 0.0 ;
+    left_rectangle.width = 2.0 ;
+    left_rectangle.height = 2.0 ;
 
-    struct rectangle right_rectangle = {
-        .x = 1.0,
-        .y = 0.0,
-        .width = 2.0,
-        .height = 2.0
-    } ;
+    struct rectangle right_rectangle ;
+    _rectangle_factory( &right_rectangle ) ;
+    right_rectangle.x = 1.0 ;
+    right_rectangle.y = 0.0 ;
+    right_rectangle.width = 2.0 ;
+    right_rectangle.height = 2.0 ;
 
     TASSERT( rectangle_is_collision( 
         &left_rectangle,
@@ -87,19 +96,19 @@ int _4_test_horizontally_overlapping_rectangles_detect_collision( void ) {
 }
 
 int _5_test_rectangles_only_overlapping_vertically_do_not_detect_collision( void ) {
-    struct rectangle top_rectangle = {
-        .x = 0.0,
-        .y = 0.0,
-        .width = 2.0,
-        .height = 2.0
-    } ;
+    struct rectangle top_rectangle ;
+    _rectangle_factory( &top_rectangle ) ;
+    top_rectangle.x = 0.0 ;
+    top_rectangle.y = 0.0 ;
+    top_rectangle.width = 2.0 ;
+    top_rectangle.height = 2.0 ;
 
-    struct rectangle bottom_rectangle = {
-        .x = 100.0,
-        .y = 1.0,
-        .width = 2.0,
-        .height = 2.0
-    } ;
+    struct rectangle bottom_rectangle ;
+    _rectangle_factory( &bottom_rectangle ) ;
+    bottom_rectangle.x = 100.0 ;
+    bottom_rectangle.y = 1.0 ;
+    bottom_rectangle.width = 2.0 ;
+    bottom_rectangle.height = 2.0 ;
 
     TASSERT( !rectangle_is_collision( 
         &top_rectangle,
@@ -110,19 +119,19 @@ int _5_test_rectangles_only_overlapping_vertically_do_not_detect_collision( void
 }
 
 int _6_test_rectangles_only_overlapping_horizontally_do_not_detect_collision( void ) {
-    struct rectangle left_rectangle = {
-        .x = 0.0,
-        .y = 0.0,
-        .width = 2.0,
-        .height = 2.0
-    } ;
+    struct rectangle left_rectangle ;
+    _rectangle_factory( &left_rectangle ) ;
+    left_rectangle.x = 0.0 ;
+    left_rectangle.y = 0.0 ;
+    left_rectangle.width = 2.0 ;
+    left_rectangle.height = 2.0 ;
 
-    struct rectangle right_rectangle = {
-        .x = 1.0,
-        .y = 100.0,
-        .width = 2.0,
-        .height = 2.0
-    } ;
+    struct rectangle right_rectangle ;
+    _rectangle_factory( &right_rectangle ) ;
+    right_rectangle.x = 1.0 ;
+    right_rectangle.y = 100.0 ;
+    right_rectangle.width = 2.0 ;
+    right_rectangle.height = 2.0 ;
 
     TASSERT( !rectangle_is_collision( 
         &left_rectangle,
@@ -133,21 +142,21 @@ int _6_test_rectangles_only_overlapping_horizontally_do_not_detect_collision( vo
 }
 
 int _7_test_colliding_rectangles_invert_y_velocity( void ) {
-     struct rectangle top_rectangle = {
-        .x = 0.0,
-        .y = 0.0,
-        .width = 2.0,
-        .height = 2.0,
-        .y_velocity = 1.0
-    } ;
+    struct rectangle top_rectangle ;
+    _rectangle_factory( &top_rectangle ) ;
+    top_rectangle.x = 0.0 ;
+    top_rectangle.y = 0.0 ;
+    top_rectangle.width = 2.0 ;
+    top_rectangle.height = 2.0 ;
+    top_rectangle.y_velocity = 1.0 ;
 
-    struct rectangle bottom_rectangle = {
-        .x = 0.0,
-        .y = 1.0,
-        .width = 2.0,
-        .height = 2.0,
-        .y_velocity = 0.0
-    } ;
+    struct rectangle bottom_rectangle ;
+    _rectangle_factory( &bottom_rectangle ) ;
+    bottom_rectangle.x = 0.0 ;
+    bottom_rectangle.y = 1.0 ;
+    bottom_rectangle.width = 2.0 ;
+    bottom_rectangle.height = 2.0 ;
+    bottom_rectangle.y_velocity = 0.0 ;
 
     struct rectangle rectangles[2] = { top_rectangle, bottom_rectangle } ;
 
@@ -159,22 +168,22 @@ int _7_test_colliding_rectangles_invert_y_velocity( void ) {
 }
 
 int _8_test_colliding_non_deflectable_rectangles_do_not_invert_y_velocity( void ) {
-     struct rectangle top_rectangle = {
-        .x = 0.0,
-        .y = 0.0,
-        .width = 2.0,
-        .height = 2.0,
-        .y_velocity = 1.0,
-        .deflectable = 0
-    } ;
+    struct rectangle top_rectangle ;
+    _rectangle_factory( &top_rectangle ) ;
+    top_rectangle.x = 0.0 ;
+    top_rectangle.y = 0.0 ;
+    top_rectangle.width = 2.0 ;
+    top_rectangle.height = 2.0 ;
+    top_rectangle.y_velocity = 1.0 ;
+    top_rectangle.deflectable = 0 ;
 
-    struct rectangle bottom_rectangle = {
-        .x = 0.0,
-        .y = 1.0,
-        .width = 2.0,
-        .height = 2.0,
-        .y_velocity = 0.0
-    } ;
+    struct rectangle bottom_rectangle ;
+    _rectangle_factory( &bottom_rectangle ) ;
+    bottom_rectangle.x = 0.0 ;
+    bottom_rectangle.y = 1.0 ;
+    bottom_rectangle.width = 2.0 ;
+    bottom_rectangle.height = 2.0 ;
+    bottom_rectangle.y_velocity = 0.0 ;
 
     struct rectangle rectangles[2] = { top_rectangle, bottom_rectangle } ;
 
