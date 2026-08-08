@@ -50,8 +50,16 @@ int main( int argc, char* argv[] ) {
         .y = starting_y,
         .width = starting_width,
         .height = starting_height,
-        .y_velocity = starting_y_velocity 
+        .y_velocity = starting_y_velocity,
+        .deflectable = 1
     } ;
+    rectangles[1] = (struct rectangle) {
+       .x = 250.0,
+       .y = 300.0,
+       .width = 100.0,
+       .height = 15.0,
+       .deflectable = 0 ;
+    }
 
     struct time_info time_info = {} ;
     int running = 1 ;
